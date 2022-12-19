@@ -2,20 +2,26 @@
 #include <stdlib.h>
 #include <conio.h>
 
-int main()
+int PrintTasks(char* filename)
 {
-    FILE* FP;
-    FP = fopen("TaskCache.txt", "r");
-    int c;
-    int x = 0;
+    char c;
+    int lines = 0;
+    FILE* fp;
+    fp = fopen(filename, "r");
     while(1)
     {
-        c = fgetc(FP);
-        if(feof(FP)) break;
+        c = fgetc(fp);
+        if(c == '.') lines++;
+        if(feof(fp)) break;
         printf("%c", c);
-
     }
-    fclose(FP);
-    return 0;
+    fclose(fp);
+    printf("\n\nPrinted task list with %d tasks.\n", lines);
+    return lines;
+}
 
+int main()
+{
+    PrintTasks("TaskList.txt");
+    return 0;
 }

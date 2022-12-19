@@ -10,7 +10,7 @@ int PrintTasks()
     while(1)
     {
         c = fgetc(fp);
-        if(c == '.') lines++;
+        if(c == '\n') lines++;
         if(feof(fp)) break;
         printf("%c", c);
     }
@@ -29,15 +29,11 @@ void AddTask(char Task[])
 int main()
 {
     char str[60];
-    int ch;printf("\n %s", str);
-    AddTask(str);
-    PrintTasks("TaskList.txt");printf("\n %s", str);
-    AddTask(str);
-    PrintTasks("TaskList.txt");
+    int ch;
     PrintTasks();
-    printf("Enter your task: ");
     gets(str);
     AddTask(str);
+    printf("\nPrinting new list...");
     PrintTasks();
     return 0;
 }

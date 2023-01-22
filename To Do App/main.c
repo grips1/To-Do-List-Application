@@ -8,13 +8,12 @@ int main()
     char c;
     while(1)
     {
-        printf("1)Print current list.\n2)Add a task to the list.\n3)Exit.\nInput:");
+        if(!(c == '\n')) printf("1)Print current list.\n2)Add a task to the list.\n3)Exit.\nInput:");
         switch(c = getchar())
         {
             case '1': PrintTasks(); break;
             case '2': AddTask(); break;
             case '3': printf("Quitting...\nGoodbye."); goto exit;
-            case '\n': break;
             default: printf("\nInvalid input, try again.\n");
         }
     }
@@ -36,7 +35,6 @@ void PrintTasks() // Works
     }
     fclose(fp);
     printf("\nPrinted task list with %d tasks.\nReturning to menu.\n", lines);
-
 }
 void AddTask()
 {
@@ -49,6 +47,4 @@ void AddTask()
     }
     fputs(".\n", fp);
     fclose(fp);
-
 }
-

@@ -1,39 +1,54 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
-int PrintTasks()
+
+int main()
+{
+    printf("Welcome.\nSelect a number to continue:\n");
+    char c;
+    while(1)
+    {
+        printf("1)Print current list.\n2)Add a task to the list.\n3)Exit.\nInput:");
+        switch(c = getchar())
+        {
+            case '1': PrintTasks(); break;
+            case '2': AddTask(); break;
+            case '3': printf("Quitting...\nGoodbye."); goto exit;
+            case '\n': break;
+            default: printf("\nInvalid input, try again.\n");
+        }
+    }
+    exit: return 0;
+}
+
+void PrintTasks() // Works
 {
     char c;
     int lines = 0;
     FILE* fp;
     fp = fopen("TaskList.txt", "r");
-    while(1)
+    for(c = fgetc(fp); !(feof(fp));)
     {
-        c = fgetc(fp);
         if(c == '\n') lines++;
         if(feof(fp)) break;
         printf("%c", c);
+        c = fgetc(fp);
     }
     fclose(fp);
-    printf("\nPrinted task list with %d tasks.\n", lines);
-    return lines;
+    printf("\nPrinted task list with %d tasks.\nReturning to menu.\n", lines);
+
 }
-void AddTask(char Task[])
-{
-    FILE* fp;
-    fp = fopen("TaskList.txt", "a");
-    fputs(Task, fp);
-    fputs(".\n", fp);
-    fclose(fp);
-}
-int main()
+void AddTask()
 {
     char str[60];
     int ch;
-    PrintTasks();
-    gets(str);
-    AddTask(str);
-    printf("\nPrinting new list...");
-    PrintTasks();
-    return 0;
+    FILE* fp = fopen("TaskList.txt", "a"); // opens file for appending;
+    for(int index = 0; (ch = getchar()) != '.'; index++)
+    {
+        fputs(ch, fp);
+    }
+    fputs(".\n", fp);
+    fclose(fp);
+
 }
+

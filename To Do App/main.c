@@ -6,7 +6,7 @@ int main()
 {
     printf("Welcome.\nSelect a number to continue:\n");
     int c;
-    do
+    while(1)
     {
         printf("1)Print current list.\n2)Add a task to the list.\n3)Exit.\nInput:\n>");
         scanf("%d[^\n]", &c);
@@ -17,7 +17,7 @@ int main()
             case 3: printf("\nQuitting...\nGOODBYE!\n"); goto exit; break;
             default: printf("\nINVALID! Try again.\n\n"); break;
         }
-    } while(1);
+    }
     exit: return 0;
 }
 

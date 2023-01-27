@@ -5,18 +5,19 @@
 int main()
 {
     printf("Welcome.\nSelect a number to continue:\n");
-    char c;
-    while(1)
+    int c;
+    do
     {
-        if(!(c == '\n')) printf("1)Print current list.\n2)Add a task to the list.\n3)Exit.\nInput:");
-        switch(c = getchar())
+        printf("1)Print current list.\n2)Add a task to the list.\n3)Exit.\nInput:\n>");
+        scanf("%d[^\n]", &c);
+        switch(c)
         {
-            case '1': PrintTasks(); break;
-            case '2': AddTask(); break;
-            case '3': printf("Quitting...\nGoodbye."); goto exit;
-            default: printf("\nInvalid input, try again.\n");
+            case 1: PrintTasks(); break;
+            case 2: AddTask(); break;
+            case 3: printf("\nQuitting...\nGOODBYE!\n"); goto exit; break;
+            default: printf("\nINVALID! Try again.\n\n"); break;
         }
-    }
+    } while(1);
     exit: return 0;
 }
 
@@ -34,17 +35,16 @@ void PrintTasks() // Works
         c = fgetc(fp);
     }
     fclose(fp);
-    printf("\nPrinted task list with %d tasks.\nReturning to menu.\n", lines);
+    printf("\nPrinted task list with %d tasks.\n>Returning to menu...\n", lines);
 }
 void AddTask()
 {
     char str[60];
     int ch;
     FILE* fp = fopen("TaskList.txt", "a"); // opens file for appending;
-    for(int index = 0; (ch = getchar()) != '.'; index++)
-    {
-        fputs(ch, fp);
-    }
-    fputs(".\n", fp);
+    printf("\nEnter task(line break to finish):\n>");
+    scanf("%59s", str);
+    fputs(&str, fp);
+    fputc("\n", fp);
     fclose(fp);
 }

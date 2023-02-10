@@ -16,7 +16,7 @@ void PrintTasks() // Works
         printf("%c", c);
     }
     fclose(fp);
-    printf("\nPrinted task list with %d tasks.\nReturning to menu.\n", lines);
+    printf("\nPrinted task list with %d tasks.\nReturning to menu.\n\n\n", lines);
 }
 
 void AddTask()
@@ -36,15 +36,17 @@ int main()
     char c;
     while(1)
     {
-        printf("1)Print current list.\n2)Add a task to the list.\n3)Exit.\nInput:");
+        
+        scanf("\n");
+        printf("1)Print current list.\n2)Add a task to the list.\n3)Exit.\nInput:\n>");
         switch(c = getchar())
         {
-            case '1': PrintTasks(); break;
+            case '1': scanf("\n"); PrintTasks(); break;
             case '2': AddTask(); break;
             case '3': printf("Quitting...\nGoodbye."); goto exit;
             default: printf("\nInvalid input, try again.\n");
         }
-        scanf("\n");
+        
     }
     exit: return 0;
 }

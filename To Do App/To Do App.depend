@@ -1,6 +1,0 @@
-# depslib dependency file v1.0
-1671614525 source:c:\users\shai\documents\c projects\to-do-list-application\to do app\main.c
-	<stdio.h>
-	<stdlib.h>
-	<conio.h>
-
